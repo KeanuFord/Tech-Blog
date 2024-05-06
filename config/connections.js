@@ -1,17 +1,16 @@
-// First line imports sequalize
-// Second line imports the .env file
-const Sequalize = require('sequalize');
+const Sequalize = require('sequelize');
 require('dotenv').config();
 
 let sequalize;
 
+const sequelize = process.env.DB_URL
 if(process.env.DB_URL) {
     sequalize = new Sequalize(process.env.DB_URL);
 } else {
     sequalize = new Sequalize(
         process.env.DB_NAME,
         process.env.DB_USER,
-        proess.env.DB_PASSWORD,
+        process.env.DB_PASSWORD,
         {
             host: 'localhost',
             dialect: 'postgres',
@@ -20,4 +19,4 @@ if(process.env.DB_URL) {
     );
 }
 
-module.exports = sequalize;
+module.exports = sequelize;
